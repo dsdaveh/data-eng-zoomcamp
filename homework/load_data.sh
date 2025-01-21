@@ -53,7 +53,9 @@ CREATE TABLE IF NOT EXISTS taxi_zone_lookup (
 
 # Load the taxi zone lookup CSV
 psql -h db -U myuser -d nyc_taxi_data -c "\COPY taxi_zone_lookup FROM 'taxi_zone_lookup.csv' CSV HEADER"
-
-
 echo "Data load complete."
+
+# Run the homework queries
+psql -h db -U myuser -d nyc_taxi_data -f queries.sql
+
 echo "psql -h localhost -U myuser -d nyc_taxi_data -p 5432"
