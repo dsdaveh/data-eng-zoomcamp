@@ -8,7 +8,12 @@ wget -O green_tripdata_2019-09.csv.gz \
 # Decompress
 gunzip -f green_tripdata_2019-09.csv.gz
 
-# Create table (if it doesn’t exist)
+# Download taxi zone lookup from: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv
+wget -O taxi_zone_lookup.csv \
+  https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv
+
+
+# Create green_taxi table from green_tripdata... (if it doesn’t exist)
 psql -h db -U myuser -d nyc_taxi_data -c "
 CREATE TABLE IF NOT EXISTS green_tripdata_2019_09 (
   vendorid INT,
@@ -33,6 +38,8 @@ CREATE TABLE IF NOT EXISTS green_tripdata_2019_09 (
   congestion_surcharge NUMERIC
 );
 "
+
+
 
 # Load CSV
 psql -h db -U myuser -d nyc_taxi_data -c "\COPY green_tripdata_2019_09 FROM 'green_tripdata_2019-09.csv' CSV HEADER"
