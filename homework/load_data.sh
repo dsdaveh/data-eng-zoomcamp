@@ -1,19 +1,18 @@
 #!/bin/bash
 set -e
 
-# Download compressed CSV
+# Download compressed CSV for green trip data
 wget -O green_tripdata_2019-09.csv.gz \
   https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-09.csv.gz
 
 # Decompress
 gunzip -f green_tripdata_2019-09.csv.gz
 
-# Download taxi zone lookup from: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv
+# Download taxi zone lookup CSV
 wget -O taxi_zone_lookup.csv \
   https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv
 
-
-# Create green_taxi table from green_tripdata... (if it doesn’t exist)
+# Create table for green trip data (if it doesn’t exist)
 psql -h db -U myuser -d nyc_taxi_data -c "
 CREATE TABLE IF NOT EXISTS green_tripdata_2019_09 (
   vendorid INT,
@@ -39,12 +38,22 @@ CREATE TABLE IF NOT EXISTS green_tripdata_2019_09 (
 );
 "
 
-
-
-# Load CSV
+# Load the green trip data CSV
 psql -h db -U myuser -d nyc_taxi_data -c "\COPY green_tripdata_2019_09 FROM 'green_tripdata_2019-09.csv' CSV HEADER"
+
+# Create table for taxi zone lookup (if it doesn’t exist)
+psql -h db -U myuser -d nyc_taxi_data -c "
+CREATE TABLE IF NOT EXISTS taxi_zone_lookup (
+  LocationID INT PRIMARY KEY,
+  Borough TEXT,
+  Zone TEXT,
+  service_zone TEXT
+);
+"
+
+# Load the taxi zone lookup CSV
+psql -h db -U myuser -d nyc_taxi_data -c "\COPY taxi_zone_lookup FROM 'taxi_zone_lookup.csv' CSV HEADER"
+
+
 echo "Data load complete."
-
-
-
-
+echo "psql -h localhost -U myuser -d nyc_taxi_data -p 5432"
