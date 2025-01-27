@@ -4,7 +4,7 @@
 -- psql -h db -U myuser -d nyc_taxi_data -c "
 SELECT COUNT(*)
 FROM green_tripdata_2019_09
-WHERE DATE(lpep_pickup_datetime) = '2019-09-18';
+WHERE DATE(lpep_pickup_datetime) = '2019-09-18';"
 -- Answer: 15767
 
 -- Which was the pick up day with the longest trip distance? Use the pick up time for your calculations.
