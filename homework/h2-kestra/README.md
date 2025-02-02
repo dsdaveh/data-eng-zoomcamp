@@ -51,7 +51,7 @@ WHERE EXTRACT(YEAR FROM lpep_pickup_datetime) = 2020;
 5) How many rows are there for the `Yellow` Taxi data for the March 2021 CSV file?
 - 1,428,092
 - 706,911
-- 1,925,152
+- 1,925,152 <- correct>
 - 2,561,031
 
 * modify 02_postgres_taxi.yaml to include 2021 in inputs.year.values
