@@ -66,11 +66,3 @@ WHERE EXTRACT(YEAR FROM lpep_pickup_datetime) = 2020;
 - ~~Add a `location` property set to `New_York` in the `Schedule` trigger configuration~~  
 
 
-## Submitting the solutions
-
-* Form for submitting: https://courses.datatalks.club/de-zoomcamp-2025/homework/hw2
-* Check the link above to see the due date
-
-## Solution
-
-Will be added after the due date
