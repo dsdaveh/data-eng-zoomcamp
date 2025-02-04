@@ -9,6 +9,7 @@ Notes: added logs to [t02_postgres_taxi](flows/02_postgres_taxi.yaml) `extract` 
   * ls -lh -> 129M
   * du -h -> 145M
   * both commands on a locally downloaded file -> 128M
+Update: the above was running locally. Since the GCP flows leave the files in the bucket, the correct answer can be seen from UI (128.3)
 
 2) What is the rendered value of the variable `file` when the inputs `taxi` is set to `green`, `year` is set to `2020`, and `month` is set to `04` during execution?
 - ~~`{{inputs.taxi}}_tripdata_{{inputs.year}}-{{inputs.month}}.csv`~~ 
