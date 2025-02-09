@@ -24,10 +24,10 @@ AS SELECT * FROM `zoomcamp-data-eng.m1_dataset.external_yellow24`;
 Question 1: What is count of records for the 2024 Yellow Taxi Data?
 - 65,623
 - 840,402
-- 20,332,093
+- **20,332,093**
 - 85,431,289
 
-SELECT COUNT(*) FROM zoomcamp-data-eng.m1_dataset.yellow24
+SELECT COUNT(*) FROM zoomcamp-data-eng.m1_dataset.yellow24  
 -- 20332093
 
 
@@ -42,7 +42,7 @@ SELECT COUNT(DISTINCT(PULocationID)) FROM `zoomcamp-data-eng.m1_dataset.external
 -- 0 MB
 
 - 18.82 MB for the External Table and 47.60 MB for the Materialized Table
-- 0 MB for the External Table and 155.12 MB for the Materialized Table
+- **0 MB for the External Table and 155.12 MB for the Materialized Table**
 - 2.14 GB for the External Table and 0MB for the Materialized Table
 - 0 MB for the External Table and 0MB for the Materialized Table
 
@@ -53,21 +53,21 @@ Write a query to retrieve the PULocationID from the table (not the external tabl
 - ~~BigQuery automatically caches the first queried column, so adding a second column increases processing time but does not affect the estimated bytes scanned.~~
 - ~~When selecting multiple columns, BigQuery performs an implicit join operation between them, increasing the estimated bytes processed~~
 
-SELECT PULocationID,DOLocationID FROM `zoomcamp-data-eng.m1_dataset.yellow24` LIMIT 10;
+SELECT PULocationID,DOLocationID FROM `zoomcamp-data-eng.m1_dataset.yellow24;
 
 ## Question 4:
 How many records have a fare_amount of 0?
 - 128,210
 - 546,578
 - 20,188,016
-- 8,333
+- **8,333**
 
-SELECT COUNT(*) FROM `zoomcamp-data-eng.m1_dataset.yellow24` WHERE fare_amount = 0;
+SELECT COUNT(*) FROM `zoomcamp-data-eng.m1_dataset.yellow24` WHERE fare_amount = 0;  
 -- 8333
 
 ## Question 5:
 What is the best strategy to make an optimized table in Big Query if your query will always filter based on tpep_dropoff_datetime and order the results by VendorID (Create a new table with this strategy)
-- Partition by tpep_dropoff_datetime and Cluster on VendorID
+- **Partition by tpep_dropoff_datetime and Cluster on VendorID**
 - Cluster on by tpep_dropoff_datetime and Cluster on VendorID
 - Cluster on tpep_dropoff_datetime Partition by VendorID
 - Partition by tpep_dropoff_datetime and Partition by VendorID
@@ -116,7 +116,7 @@ It is best practice in Big Query to always cluster your data:
 ## (Bonus: Not worth points) Question 9:
 No Points: Write a `SELECT count(*)` query FROM the materialized table you created. How many bytes does it estimate will be read? Why?
 
-0 B because it can read from the materialize table's metadata
+0 B because it can read from the materialize table's metadata. It doesn't need to process the table itself.
 
 ## Submitting the solutions
 
